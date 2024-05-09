@@ -20,6 +20,12 @@ export const signup = async (req, res) => {
       return res.status(400).json({ error: "Email is already available" });
     }
 
+    if (/\s/.test(password)) {
+      return res.status(400).json({
+        error: "Password cannot contain spaces",
+      });
+    }
+
     if (password.length < 6) {
       return res
         .status(400)
