@@ -4,9 +4,9 @@ import connectionDB from "./db/connectionDB.js";
 import cookieParser from "cookie-parser";
 import { v2 as cloudinary } from "cloudinary";
 
-import authRoutes from "./routes/auth-routers.js";
-import userRoutes from "./routes/user-routers.js";
-import postRoutes from "./routes/post-routers.js"
+import authRoutes from "./routes/auth-route.js";
+import userRoutes from "./routes/user-route.js";
+import postRoutes from "./routes/post-route.js"
 
 dotenv.config();
 
