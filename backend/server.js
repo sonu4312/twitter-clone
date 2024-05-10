@@ -6,7 +6,8 @@ import { v2 as cloudinary } from "cloudinary";
 
 import authRoutes from "./routes/auth-route.js";
 import userRoutes from "./routes/user-route.js";
-import postRoutes from "./routes/post-route.js"
+import postRoutes from "./routes/post-route.js";
+import notificationRoutes from "./routes/notification-route.js"
 
 dotenv.config();
 
@@ -26,11 +27,12 @@ app.use(cookieParser()); //to parse cookies
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
-app.use("/api/posts",postRoutes)
+app.use("/api/posts", postRoutes);
+app.use("/api/notifications", notificationRoutes);
 
-app.get("/", (req, res) => {
-  res.send("Server is ready");
-});
+// app.get("/", (req, res) => {
+//   res.send("Server is ready");
+// });
 
 // const PORT = 8000;
 
