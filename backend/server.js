@@ -6,6 +6,7 @@ import { v2 as cloudinary } from "cloudinary";
 
 import authRoutes from "./routes/auth-routers.js";
 import userRoutes from "./routes/user-routers.js";
+import postRoutes from "./routes/post-routers.js"
 
 dotenv.config();
 
@@ -25,6 +26,7 @@ app.use(cookieParser()); //to parse cookies
 
 app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
+app.use("/api/posts",postRoutes)
 
 app.get("/", (req, res) => {
   res.send("Server is ready");
