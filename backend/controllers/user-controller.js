@@ -68,33 +68,6 @@ export const followUnfollowUser = async (req, res) => {
   }
 };
 
-// export const getSuggestedUsers = async (req, res) => {
-//   try {
-//     const userId = req.user._id;
-
-//     //to ensure not get suggestion of already followed user
-//     const usersFollowedByMe = await User.findById(userId).select("following");
-
-//     const users = await User.aggregate([
-//       {
-//         $match: {
-//           _id: { $ne: userId },
-//         },
-//       },
-//       { $sample: { size: 10 } }, //get the 10 user from db for suggestion
-//     ]);
-
-//     const filteredUsers = users.filter(
-//       (user) => !usersFollowedByMe.following.includes(user._id)
-//     );
-
-//     const suggestedUsers = filteredUsers.slice(0, 4);
-
-//     suggestedUsers.forEach((user) => (user.password = null));
-
-//     res.status(200).json(suggestedUsers);
-//   } catch (error) {}
-// };
 
 export const getSuggestedUsers = async (req, res) => {
   try {
@@ -103,13 +76,12 @@ export const getSuggestedUsers = async (req, res) => {
     // Fetch users followed by the requesting user
     const { following } = await User.findById(userId).select("following");
 
-    // Find users not followed by the requesting user
-    const suggestedUsers = await User.find(
-      { _id: { $ne: userId, $nin: following } }, // Not equal to the requesting user and not in the following array
-      { password: 0 } // Exclude password field from the result
-    )
-      .limit(4) // Limit to 4 users
-      .lean(); // Convert mongoose documents to plain JavaScript objects
+    // Find random users not followed by the requesting user
+    const suggestedUsers = await User.aggregate([
+      { $match: { _id: { $ne: userId, $nin: following } } }, // Not equal to the requesting user and not in the following array
+      { $sample: { size: 10 } }, // Select 4 random users
+      { $project: { password: 0 } } // Exclude password field from the result
+    ]).limit(4);
 
     res.status(200).json(suggestedUsers);
   } catch (error) {
@@ -117,6 +89,7 @@ export const getSuggestedUsers = async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
 
 export const updateUser = async (req, res) => {
   const { fullName, email, username, currentPassword, newPassword, bio, link } =
