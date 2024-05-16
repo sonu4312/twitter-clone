@@ -15,7 +15,7 @@ function App() {
     queryKey: ["authUser"],
     queryFn: async () => {
       try {
-        const res = await fetch("api/auth/me");
+        const res = await fetch("/api/auth/me");
         const data = await res.json();
         if (data.error) return null; //made the authUser as null so it go to the login , otherwise it gives undefined
         if (!res.ok) {
