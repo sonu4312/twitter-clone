@@ -11,6 +11,14 @@ This project is aimed at learning the MERN stack (MongoDB, Express.js, React.js,
 
 ## Setup Instructions
 
+### Clone the Repository
+Clone the project and go to the project directory.
+
+```bash
+git clone https://github.com/sonu4312/twitter-clone.git
+cd twitter-clone
+```
+
 ### Environment Files
 
 At the root directory i.e. `twitter-clone` create a file with the name `.env` and add the following content.
