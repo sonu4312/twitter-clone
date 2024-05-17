@@ -53,7 +53,7 @@ npm run dev
 ### Backend Setup
 At the root directory of your project ,where the server.js file i.e. at the `twitter-clone` type below command and run you backend.
 
-# Install dependencies
+### Install dependencies
 
 ```bash
 npm install
