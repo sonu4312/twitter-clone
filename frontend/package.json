@@ -19,7 +19,8 @@
     "react-hot-toast": "^2.4.1",
     "react-icons": "^5.2.1",
     "react-router-dom": "^6.23.1",
-    "react-textarea-autosize": "^8.5.3"
+    "react-textarea-autosize": "^8.5.3",
+    "twitter-clone": "file:.."
   },
   "devDependencies": {
     "@types/react": "^18.2.66",
